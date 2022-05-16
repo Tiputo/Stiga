@@ -1,0 +1,28 @@
+name: Deploy Contember
+
+on:
+  push:
+    branches:
+      - 'master/jobs'
+
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build admin
+        run: npm run build-admin
+
+      - name: Build api
+        run: npm run build-api
+
+      - name: Deploy Contember to master
+        if: ${{ github.ref == 'refs/heads/master' }}
+        run: npm run contember deploy ${{ secrets.CONTEMBER_MASTER_DSN }} -- --yes
