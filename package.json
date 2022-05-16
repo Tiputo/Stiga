@@ -1,0 +1,34 @@
+{
+  "scripts": {
+    "contember": "docker-compose run contember-cli",
+    "start": "npm run start-engine && concurrently npm:start-admin npm:start-website",
+    "start-engine": "docker-compose up --detach && npm run contember migrations:execute . -- --yes",
+    "start-admin": "vite admin --port 1480 --host 0.0.0.0",
+    "start-website": "next dev website",
+    "build": "concurrently npm:build-admin npm:build-api npm:build-website",
+    "build-admin": "tsc --project admin && vite build admin",
+    "build-api": "tsc --project api",
+    "build-website": "tsc --project website && next build website",
+    "deploy": "npm run build && docker-compose run contember-cli deploy"
+  },
+  "dependencies": {
+    "next": "^12",
+    "react": "^17",
+    "react-dom": "^17"
+  },
+  "devDependencies": {
+    "@contember/admin": "^1.0.0",
+    "@contember/admin-i18n": "^1.0.0",
+    "@contember/react-client": "^1.0.0",
+    "@contember/schema": "^1.0.0",
+    "@contember/schema-definition": "^1.0.0",
+    "@picocss/pico": "^1.4.4",
+    "@types/node": "^16",
+    "@types/react": "^17",
+    "concurrently": "^7.0.0",
+    "eslint": "^8.6",
+    "eslint-config-next": "^12.0",
+    "typescript": "^4.5",
+    "vite": "^2.7"
+  }
+}

@@ -1,0 +1,41 @@
+{
+	"formatVersion": 3,
+	"modifications": [
+		{
+			"modification": "createColumn",
+			"entityName": "Page",
+			"field": {
+				"name": "text",
+				"columnName": "text",
+				"nullable": true,
+				"type": "String",
+				"columnType": "text"
+			}
+		},
+		{
+			"modification": "patchAclSchema",
+			"patch": [
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/Page/operations/create/text",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/Page/operations/update/text",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/Page/operations/read/text",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/public/entities/Page/operations/read/text",
+					"value": true
+				}
+			]
+		}
+	]
+}
