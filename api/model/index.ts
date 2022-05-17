@@ -9,5 +9,4 @@ export * from './Menu'
 export * from './Page'
 export * from './Seo'
 export * from './Setting'
-
-
+export * from './Testimonial'

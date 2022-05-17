@@ -4,6 +4,7 @@ import { Button } from './Button'
 import { Content } from './Content'
 import { Image } from './Image'
 import { Page } from './Page'
+import {TestimonialAuthor, Testimonial} from "./Testimonial"
 
 export const ContentBlockType = def.createEnum(
 	'heroSection', // primaryText, content, images, buttons
@@ -55,13 +56,8 @@ export class ContentTestimonial {
 	order = def.intColumn().notNull()
 	content = def.oneHasOne(Content).notNull().removeOrphan()
 	author = def.oneHasOne(TestimonialAuthor).removeOrphan().setNullOnDelete()
-	contentBlock = def.manyHasOne(ContentBlock, 'testimonials').notNull().cascadeOnDelete()
-}
-
-export class TestimonialAuthor {
-	name = def.stringColumn().notNull()
-	title = def.stringColumn()
-	image = def.manyHasOne(Image).setNullOnDelete()
+	testimonial = def.manyHasOne(Testimonial)
+	contentBlock = def.manyHasOne(ContentBlock, "testimonials").cascadeOnDelete()
 }
 
 export class ContentBlogPost {
