@@ -1,0 +1,108 @@
+{
+	"formatVersion": 3,
+	"modifications": [
+		{
+			"modification": "createEntity",
+			"entity": {
+				"name": "Player",
+				"primary": "id",
+				"primaryColumn": "id",
+				"unique": {},
+				"fields": {
+					"id": {
+						"name": "id",
+						"columnName": "id",
+						"nullable": false,
+						"type": "Uuid",
+						"columnType": "uuid"
+					}
+				},
+				"tableName": "player"
+			}
+		},
+		{
+			"modification": "createColumn",
+			"entityName": "Player",
+			"field": {
+				"name": "firstname",
+				"columnName": "firstname",
+				"nullable": false,
+				"type": "String",
+				"columnType": "text"
+			}
+		},
+		{
+			"modification": "createColumn",
+			"entityName": "Player",
+			"field": {
+				"name": "surname",
+				"columnName": "surname",
+				"nullable": false,
+				"type": "String",
+				"columnType": "text"
+			}
+		},
+		{
+			"modification": "createColumn",
+			"entityName": "Player",
+			"field": {
+				"name": "nickname",
+				"columnName": "nickname",
+				"nullable": true,
+				"type": "String",
+				"columnType": "text"
+			}
+		},
+		{
+			"modification": "createRelation",
+			"entityName": "Player",
+			"owningSide": {
+				"name": "image",
+				"nullable": true,
+				"type": "ManyHasOne",
+				"target": "Image",
+				"joiningColumn": {
+					"columnName": "image_id",
+					"onDelete": "restrict"
+				}
+			}
+		},
+		{
+			"modification": "patchAclSchema",
+			"patch": [
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/Player",
+					"value": {
+						"predicates": {},
+						"operations": {
+							"create": {
+								"id": true,
+								"firstname": true,
+								"surname": true,
+								"nickname": true,
+								"image": true
+							},
+							"read": {
+								"id": true,
+								"firstname": true,
+								"surname": true,
+								"nickname": true,
+								"image": true
+							},
+							"update": {
+								"id": true,
+								"firstname": true,
+								"surname": true,
+								"nickname": true,
+								"image": true
+							},
+							"delete": true,
+							"customPrimary": true
+						}
+					}
+				}
+			]
+		}
+	]
+}
