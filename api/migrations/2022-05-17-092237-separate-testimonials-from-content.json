@@ -1,0 +1,228 @@
+{
+	"formatVersion": 3,
+	"modifications": [
+		{
+			"modification": "removeEntity",
+			"entityName": "TestimonialAuthor"
+		},
+		{
+			"modification": "removeField",
+			"entityName": "ContentTestimonial",
+			"fieldName": "content"
+		},
+		{
+			"modification": "makeRelationNullable",
+			"entityName": "ContentTestimonial",
+			"fieldName": "contentBlock"
+		},
+		{
+			"modification": "createEntity",
+			"entity": {
+				"name": "Testimonial",
+				"primary": "id",
+				"primaryColumn": "id",
+				"unique": {},
+				"fields": {
+					"id": {
+						"name": "id",
+						"columnName": "id",
+						"nullable": false,
+						"type": "Uuid",
+						"columnType": "uuid"
+					}
+				},
+				"tableName": "testimonial"
+			}
+		},
+		{
+			"modification": "createEntity",
+			"entity": {
+				"name": "TestimonailAuthor",
+				"primary": "id",
+				"primaryColumn": "id",
+				"unique": {},
+				"fields": {
+					"id": {
+						"name": "id",
+						"columnName": "id",
+						"nullable": false,
+						"type": "Uuid",
+						"columnType": "uuid"
+					}
+				},
+				"tableName": "testimonail_author"
+			}
+		},
+		{
+			"modification": "createColumn",
+			"entityName": "TestimonailAuthor",
+			"field": {
+				"name": "name",
+				"columnName": "name",
+				"nullable": false,
+				"type": "String",
+				"columnType": "text"
+			}
+		},
+		{
+			"modification": "createColumn",
+			"entityName": "TestimonailAuthor",
+			"field": {
+				"name": "title",
+				"columnName": "title",
+				"nullable": true,
+				"type": "String",
+				"columnType": "text"
+			}
+		},
+		{
+			"modification": "createRelation",
+			"entityName": "ContentTestimonial",
+			"owningSide": {
+				"name": "testimonial",
+				"nullable": true,
+				"type": "ManyHasOne",
+				"target": "Testimonial",
+				"joiningColumn": {
+					"columnName": "testimonial_id",
+					"onDelete": "restrict"
+				}
+			}
+		},
+		{
+			"modification": "createRelation",
+			"entityName": "Testimonial",
+			"owningSide": {
+				"name": "content",
+				"nullable": true,
+				"type": "OneHasOne",
+				"target": "Content",
+				"joiningColumn": {
+					"columnName": "content_id",
+					"onDelete": "restrict"
+				}
+			}
+		},
+		{
+			"modification": "createRelation",
+			"entityName": "Testimonial",
+			"owningSide": {
+				"name": "author",
+				"nullable": true,
+				"type": "OneHasOne",
+				"target": "TestimonailAuthor",
+				"joiningColumn": {
+					"columnName": "author_id",
+					"onDelete": "restrict"
+				}
+			}
+		},
+		{
+			"modification": "createRelation",
+			"entityName": "TestimonailAuthor",
+			"owningSide": {
+				"name": "image",
+				"nullable": true,
+				"type": "ManyHasOne",
+				"target": "Image",
+				"joiningColumn": {
+					"columnName": "image_id",
+					"onDelete": "restrict"
+				}
+			}
+		},
+		{
+			"modification": "patchAclSchema",
+			"patch": [
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/Testimonial",
+					"value": {
+						"predicates": {},
+						"operations": {
+							"create": {
+								"id": true,
+								"content": true,
+								"author": true
+							},
+							"read": {
+								"id": true,
+								"content": true,
+								"author": true
+							},
+							"update": {
+								"id": true,
+								"content": true,
+								"author": true
+							},
+							"delete": true,
+							"customPrimary": true
+						}
+					}
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/TestimonailAuthor",
+					"value": {
+						"predicates": {},
+						"operations": {
+							"create": {
+								"id": true,
+								"name": true,
+								"title": true,
+								"image": true
+							},
+							"read": {
+								"id": true,
+								"name": true,
+								"title": true,
+								"image": true
+							},
+							"update": {
+								"id": true,
+								"name": true,
+								"title": true,
+								"image": true
+							},
+							"delete": true,
+							"customPrimary": true
+						}
+					}
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/ContentTestimonial/operations/create/testimonial",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/ContentTestimonial/operations/update/testimonial",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/ContentTestimonial/operations/read/testimonial",
+					"value": true
+				},
+				{
+					"op": "remove",
+					"path": "/roles/public/entities/ContentTestimonial"
+				},
+				{
+					"op": "add",
+					"path": "/roles/public/entities/Testimonial",
+					"value": {
+						"predicates": {},
+						"operations": {
+							"read": {
+								"id": true,
+								"content": true,
+								"author": true
+							}
+						}
+					}
+				}
+			]
+		}
+	]
+}
