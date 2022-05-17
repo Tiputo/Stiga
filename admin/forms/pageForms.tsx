@@ -52,6 +52,13 @@ export const PageSideForm = Component(
 	),
 	'PageSideForm',
 )
+//??
+class DateField extends React.Component<{ field: string, label: string }> {
+	render() {
+		return null;
+	}
+}
+//??
 
 export const PageForm = Component(
 	() => (
@@ -59,6 +66,9 @@ export const PageForm = Component(
 
 			<Section heading={locale['Content']}>
 				<TextField field='text' label='Textovy pole'/>
+				<DateField field="birthday" label="Birthday" />
+
+
 				<ContentBlocks />
 			</Section>
 			<Seo

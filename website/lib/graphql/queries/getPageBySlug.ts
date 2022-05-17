@@ -9,6 +9,7 @@ const getPage = `#graphql
 			publishAt
 			role
 			text
+			birthday
 			seo {
 				id
 				title
