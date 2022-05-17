@@ -1,5 +1,14 @@
 import * as React from 'react'
-import { Block, BlockRepeater, Box, Component, HasOne, ImageFileRepeater, ImageUploadField, Repeater, RichTextField, TextField } from '@contember/admin'
+import {
+	Block,
+	BlockRepeater,
+	Component,
+	ImageFileRepeater,
+	ImageUploadField,
+	Repeater,
+	SelectField,
+	TextField
+} from '@contember/admin'
 import { Button } from './Button'
 import { ContentField } from './ContentField'
 import { IconContactSection } from './icons/IconContactSection'
@@ -106,25 +115,30 @@ export const ContentBlocks = Component(
 
 			<Block
 				discriminateBy="testimonialSection"
-				label={<LabelWithIcon icon={<IconTestimonialSection />} label={locale['Testimonial section']} />}
+				label={<LabelWithIcon icon={<IconTestimonialSection />} label={locale["Testimonial section"]} />}
 			>
-				<TextField field="primaryText" label={locale['Headline']} />
+				<TextField field="primaryText" label={locale["Headline"]} />
 				<ContentField />
 				<Repeater
 					field="testimonials"
-					label={locale['Testimonials']}
+					label={locale["Testimonials"]}
 					sortableBy="order"
 					addButtonText="Add testimonial"
 				>
-					<ContentField />
-					<Box heading="Author">
-						<HasOne field="author">
-							<ImageField field="image" label={locale['Image']} />
-							<TextField field="name" label={locale['Name']} />
-							<RichTextField field="title" label={locale['Title']} />
-						</HasOne>
-					</Box>
+					<SelectField field="testimonial" label={locale["Testimonial"]} options="Testimonial.author.name" />
 				</Repeater>
+			</Block>
+
+			<Block discriminateBy="imageWithTextSection" label="Image s text sekci">
+				<ContentField />
+				<ImageUploadField
+					label={locale["Image"]}
+					urlField="image.url"
+					widthField="image.width"
+					heightField="image.height"
+				>
+					<TextField field="image.alt" label={locale["Alternative text"]} />
+				</ImageUploadField>
 			</Block>
 
 			<Block
@@ -135,6 +149,9 @@ export const ContentBlocks = Component(
 				<ContentField />
 			</Block>
 		</BlockRepeater>
+
+
+
 	),
 	'ContentBlocks',
 )
