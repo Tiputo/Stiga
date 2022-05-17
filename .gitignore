@@ -3,3 +3,4 @@
 /docker-compose.override.yaml
 package-lock.json
 .next
+'.idea' 
