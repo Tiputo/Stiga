@@ -13,7 +13,6 @@ export class Page {
 	blocks = def.oneHasMany(ContentBlock, 'page').orderBy('order')
 	seo = def.oneHasOne(Seo, 'page').notNull().removeOrphan()
 	text = def.stringColumn()
-	birthday = def.dateColumn()
 
 
 }
