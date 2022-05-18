@@ -1,0 +1,10 @@
+{
+	"formatVersion": 3,
+	"modifications": [
+		{
+			"modification": "removeField",
+			"entityName": "Player",
+			"fieldName": "delete"
+		}
+	]
+}

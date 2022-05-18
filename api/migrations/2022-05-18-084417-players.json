@@ -1,0 +1,36 @@
+{
+	"formatVersion": 3,
+	"modifications": [
+		{
+			"modification": "createColumn",
+			"entityName": "Player",
+			"field": {
+				"name": "delete",
+				"columnName": "delete",
+				"nullable": true,
+				"type": "String",
+				"columnType": "text"
+			}
+		},
+		{
+			"modification": "patchAclSchema",
+			"patch": [
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/Player/operations/create/delete",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/Player/operations/read/delete",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/Player/operations/update/delete",
+					"value": true
+				}
+			]
+		}
+	]
+}

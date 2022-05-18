@@ -1,0 +1,44 @@
+{
+	"formatVersion": 3,
+	"modifications": [
+		{
+			"modification": "removeField",
+			"entityName": "Player",
+			"fieldName": "delete"
+		},
+		{
+			"modification": "createRelation",
+			"entityName": "Player",
+			"owningSide": {
+				"name": "delete",
+				"nullable": true,
+				"type": "OneHasOne",
+				"target": "Button",
+				"joiningColumn": {
+					"columnName": "delete_id",
+					"onDelete": "set null"
+				}
+			}
+		},
+		{
+			"modification": "patchAclSchema",
+			"patch": [
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/Player/operations/create/delete",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/Player/operations/update/delete",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/Player/operations/read/delete",
+					"value": true
+				}
+			]
+		}
+	]
+}

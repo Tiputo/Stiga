@@ -4,6 +4,9 @@ import locale from '../locales'
 
 export const Navigation = () => (
 	<Menu>
+		<Menu.Item title="stiga">
+		<Menu.Item title={["Player"]} to="playerList" />
+		</Menu.Item>
 		<Menu.Item>
 			<Menu.Item title={locale["Pages"]} to="pageList" />
 			<Menu.Item title={locale["Articles"]} to="articleList" />
