@@ -1,0 +1,176 @@
+{
+	"formatVersion": 3,
+	"modifications": [
+		{
+			"modification": "createEntity",
+			"entity": {
+				"name": "Match",
+				"primary": "id",
+				"primaryColumn": "id",
+				"unique": {},
+				"fields": {
+					"id": {
+						"name": "id",
+						"columnName": "id",
+						"nullable": false,
+						"type": "Uuid",
+						"columnType": "uuid"
+					}
+				},
+				"tableName": "match"
+			}
+		},
+		{
+			"modification": "createEntity",
+			"entity": {
+				"name": "MatchTeam",
+				"primary": "id",
+				"primaryColumn": "id",
+				"unique": {},
+				"fields": {
+					"id": {
+						"name": "id",
+						"columnName": "id",
+						"nullable": false,
+						"type": "Uuid",
+						"columnType": "uuid"
+					}
+				},
+				"tableName": "match_team"
+			}
+		},
+		{
+			"modification": "createColumn",
+			"entityName": "MatchTeam",
+			"field": {
+				"name": "score",
+				"columnName": "score",
+				"nullable": true,
+				"type": "Integer",
+				"columnType": "integer"
+			}
+		},
+		{
+			"modification": "createRelation",
+			"entityName": "Match",
+			"owningSide": {
+				"name": "playerHome",
+				"nullable": true,
+				"type": "OneHasOne",
+				"target": "MatchTeam",
+				"joiningColumn": {
+					"columnName": "player_home_id",
+					"onDelete": "restrict"
+				}
+			}
+		},
+		{
+			"modification": "createRelation",
+			"entityName": "Match",
+			"owningSide": {
+				"name": "playerAway",
+				"nullable": true,
+				"type": "OneHasOne",
+				"target": "MatchTeam",
+				"joiningColumn": {
+					"columnName": "player_away_id",
+					"onDelete": "restrict"
+				}
+			}
+		},
+		{
+			"modification": "createRelation",
+			"entityName": "MatchTeam",
+			"owningSide": {
+				"name": "player",
+				"inversedBy": "team",
+				"nullable": true,
+				"type": "OneHasOne",
+				"target": "Player",
+				"joiningColumn": {
+					"columnName": "player_id",
+					"onDelete": "restrict"
+				}
+			},
+			"inverseSide": {
+				"name": "team",
+				"ownedBy": "player",
+				"target": "MatchTeam",
+				"type": "OneHasOne",
+				"nullable": true
+			}
+		},
+		{
+			"modification": "patchAclSchema",
+			"patch": [
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/Match",
+					"value": {
+						"predicates": {},
+						"operations": {
+							"create": {
+								"id": true,
+								"playerHome": true,
+								"playerAway": true
+							},
+							"read": {
+								"id": true,
+								"playerHome": true,
+								"playerAway": true
+							},
+							"update": {
+								"id": true,
+								"playerHome": true,
+								"playerAway": true
+							},
+							"delete": true,
+							"customPrimary": true
+						}
+					}
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/MatchTeam",
+					"value": {
+						"predicates": {},
+						"operations": {
+							"create": {
+								"id": true,
+								"player": true,
+								"score": true
+							},
+							"read": {
+								"id": true,
+								"player": true,
+								"score": true
+							},
+							"update": {
+								"id": true,
+								"player": true,
+								"score": true
+							},
+							"delete": true,
+							"customPrimary": true
+						}
+					}
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/Player/operations/create/team",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/Player/operations/update/team",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/Player/operations/read/team",
+					"value": true
+				}
+			]
+		}
+	]
+}
