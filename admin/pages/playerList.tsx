@@ -28,7 +28,7 @@ export default () => (
         />
 
         <GenericCell>
-        <DeleteEntityButton/>        
+        <DeleteEntityButton immediatePersist/>        
         </GenericCell>
     </DataGridPage>
 )
