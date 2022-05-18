@@ -8,6 +8,8 @@ import Seo from '../components/seo'
 import Blocks from '../components/blocks'
 import Header from '../components/header'
 import Footer from '../components/footer'
+import Image from 'next/image'
+import style from '../styles/homePage.module.sass'
 
 
 export default function Home(props: any) {
@@ -15,8 +17,7 @@ export default function Home(props: any) {
 	const headerMenu = props.data?.getHeaderMenu
 	const footerMenu = props.data?.getFooterMenu
 	const setting = props.data?.getSetting
-
-	console.log(homePageData)
+	const listPlayer = props.data?.listPlayer
 
 	if (props.errors) {
 		return (
@@ -43,6 +44,15 @@ export default function Home(props: any) {
 			<Header menu={headerMenu} logo={setting?.logo} />
 
 			<main>
+				{/* {listPlayer.map(player => (<pre>{JSON.stringify(player.firstname, null, 2)}</pre>))} */}
+				{listPlayer.map(player => (
+					<div key={player.id} className={style.player}>
+						<div>Jméno hráče: {player.firstname} {player.surname}</div>
+						<div>Přezdívka hráče: {player.nickname} </div>
+						{player.image?.url && (
+							<Image src={player.image.url} width={player.image.width} height={player.image.height} />
+						)}
+					</div>))}
 				<Blocks blocks={homePageData?.blocks} />
 			</main>
 

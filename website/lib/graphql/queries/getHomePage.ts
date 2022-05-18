@@ -4,6 +4,21 @@ import getSettting from "../partials/getSettings"
 
 const getHomePage = `#graphql
 	query {
+		listPlayer{
+			id
+			firstname
+			surname
+			nickname
+			image{
+			  url
+			  width
+			  height
+			  size
+			  type
+			  alt
+			}
+		  }
+
 		getPage(by: {role: homePage}) {
 			id
 			publishAt
