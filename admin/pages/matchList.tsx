@@ -22,15 +22,16 @@ export default () => (
         />
 
         <TextCell
+            field="playerAway.score"
+            header="Player Away Score"
+        />
+
+        <TextCell
             field="playerAway.player.nickname"
             header="Player Away"
             format={(scalar) => <Link to="matchEdit(id: $entity.id)">{scalar}</Link>}
         />
 
-        <TextCell
-            field="playerAway.score"
-            header="Player Away Score"
-        />
 
         <GenericCell>
             <DeleteEntityButton immediatePersist />
