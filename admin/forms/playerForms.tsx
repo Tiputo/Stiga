@@ -1,5 +1,5 @@
-import * as React from 'react'
 import { Component, TextField } from '@contember/admin'
+import * as React from 'react'
 import { ImageField } from '../components/ImageField'
 
 export const PlayerForm = Component(
