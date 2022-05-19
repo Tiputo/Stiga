@@ -7,6 +7,6 @@ export class Match {
 }
 
 export class MatchTeam {
-    player = def.manyHasOne(Player, "teams").cascadeOnDelete()
+    player = def.manyHasOne(Player, "teams").notNull().cascadeOnDelete()
     score = def.intColumn()
 }
