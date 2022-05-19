@@ -2,11 +2,11 @@ import { SchemaDefinition as def } from "@contember/schema-definition"
 import { Player } from "./Player"
 
 export class Match {
-    playerHome = def.oneHasOne(MatchTeam)
-    playerAway = def.oneHasOne(MatchTeam)
+    playerHome = def.manyHasOne(MatchTeam)
+    playerAway = def.manyHasOne(MatchTeam)
 }
 
 export class MatchTeam {
-    player = def.oneHasOne(Player, "team").cascadeOnDelete()
+    player = def.manyHasOne(Player, "teams").cascadeOnDelete()
     score = def.intColumn()
 }

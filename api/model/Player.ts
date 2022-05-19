@@ -8,6 +8,6 @@ export class Player {
     nickname = def.stringColumn()
     image = def.manyHasOne(Image)
 
-    team = def.oneHasOneInverse(MatchTeam, "player")
+    teams = def.oneHasMany(MatchTeam, "player")
 }
 

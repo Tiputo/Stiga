@@ -1,0 +1,21 @@
+{
+	"formatVersion": 3,
+	"modifications": [
+		{
+			"modification": "convertOneToManyRelation",
+			"entityName": "Match",
+			"fieldName": "playerHome"
+		},
+		{
+			"modification": "convertOneToManyRelation",
+			"entityName": "Match",
+			"fieldName": "playerAway"
+		},
+		{
+			"modification": "convertOneToManyRelation",
+			"entityName": "MatchTeam",
+			"fieldName": "player",
+			"newInverseSideFieldName": "teams"
+		}
+	]
+}
