@@ -1,0 +1,60 @@
+{
+	"formatVersion": 3,
+	"modifications": [
+		{
+			"modification": "createRelationInverseSide",
+			"entityName": "MatchTeam",
+			"relation": {
+				"name": "matchPlayerHome",
+				"ownedBy": "playerHome",
+				"type": "OneHasMany",
+				"target": "Match"
+			}
+		},
+		{
+			"modification": "createRelationInverseSide",
+			"entityName": "MatchTeam",
+			"relation": {
+				"name": "matchPlayerAway",
+				"ownedBy": "playerAway",
+				"type": "OneHasMany",
+				"target": "Match"
+			}
+		},
+		{
+			"modification": "patchAclSchema",
+			"patch": [
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/MatchTeam/operations/create/matchPlayerHome",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/MatchTeam/operations/create/matchPlayerAway",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/MatchTeam/operations/update/matchPlayerHome",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/MatchTeam/operations/update/matchPlayerAway",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/MatchTeam/operations/read/matchPlayerHome",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/MatchTeam/operations/read/matchPlayerAway",
+					"value": true
+				}
+			]
+		}
+	]
+}
