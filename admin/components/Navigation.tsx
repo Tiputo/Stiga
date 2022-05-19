@@ -1,11 +1,12 @@
-import * as React from 'react'
 import { Menu } from '@contember/admin'
+import * as React from 'react'
 import locale from '../locales'
 
 export const Navigation = () => (
 	<Menu>
 		<Menu.Item title="stiga">
-		<Menu.Item title={["Player"]} to="playerList" />
+			<Menu.Item title={["Player"]} to="playerList" />
+			<Menu.Item title={["Match"]} to="matchList" />
 		</Menu.Item>
 		<Menu.Item>
 			<Menu.Item title={locale["Pages"]} to="pageList" />
