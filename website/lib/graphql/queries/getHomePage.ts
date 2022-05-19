@@ -19,6 +19,24 @@ const getHomePage = `#graphql
 			}
 		  }
 
+		  listMatch{
+			id
+			playerHome{
+			  id
+			  score
+			  player{
+				nickname
+			  }
+			}
+			 playerAway{
+			  id
+			  score
+			  player{
+				nickname
+			  }
+			}
+		  }
+
 		getPage(by: {role: homePage}) {
 			id
 			publishAt

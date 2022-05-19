@@ -1,14 +1,11 @@
-import type { NextPage } from 'next'
 import Head from 'next/head'
-
+import Image from 'next/image'
+import Blocks from '../components/blocks'
+import Footer from '../components/footer'
+import Header from '../components/header'
+import Seo from '../components/seo'
 import { serverSideFetch } from '../lib/graphql/gqlfetch'
 import getHomePage from '../lib/graphql/queries/getHomePage'
-
-import Seo from '../components/seo'
-import Blocks from '../components/blocks'
-import Header from '../components/header'
-import Footer from '../components/footer'
-import Image from 'next/image'
 import style from '../styles/homePage.module.sass'
 
 
@@ -18,6 +15,7 @@ export default function Home(props: any) {
 	const footerMenu = props.data?.getFooterMenu
 	const setting = props.data?.getSetting
 	const listPlayer = props.data?.listPlayer
+	const listMatch = props.data?.listMatch
 
 	if (props.errors) {
 		return (
@@ -33,7 +31,6 @@ export default function Home(props: any) {
 			</>
 		)
 	}
-
 	return (
 		<>
 			<Seo seo={homePageData?.seo} />
@@ -45,14 +42,40 @@ export default function Home(props: any) {
 
 			<main>
 				{/* {listPlayer.map(player => (<pre>{JSON.stringify(player.firstname, null, 2)}</pre>))} */}
-				{listPlayer.map(player => (
-					<div key={player.id} className={style.player}>
-						<div>Jméno hráče: {player.firstname} {player.surname}</div>
-						<div>Přezdívka hráče: {player.nickname} </div>
-						{player.image?.url && (
-							<Image src={player.image.url} width={player.image.width} height={player.image.height} />
-						)}
-					</div>))}
+				<div className={style.cards}>
+					{listPlayer.map(player => (
+						<div key={player.id} className={style.wrap}>
+							<div className={style.card}>
+								<div className={style.image}>{player.image?.url && (
+									<Image src={player.image.url} width={player.image.width} height={player.image.height} alt={player.image.height} />
+								)}
+								</div>
+								<div className={style.container}>
+									<p>Jméno hráče: {player.firstname} {player.surname}</p>
+									<p>Přezdívka hráče: {player.nickname}</p>
+								</div>
+							</div>
+						</div>
+					))}
+				</div>
+
+				<div className={style.table}>
+					{listMatch.map(match => (
+						<table key={match.id} className={style.tableIn}>
+							<tr>
+								<th>Jméno domácího hráče</th>
+								<th>Skóre</th>
+								<th>Jméno venkovního hráče</th>
+							</tr>
+							<tr>
+								<td><div className={style.name}>{match.playerHome.player.nickname}</div></td>
+								<td><div>{match.playerHome.score} : {match.playerAway.score}</div></td>
+								<td><div className={style.name}>{match.playerHome.player.nickname}</div></td>
+							</tr>
+						</table>
+					))}
+				</div>
+
 				<Blocks blocks={homePageData?.blocks} />
 			</main>
 
