@@ -31,6 +31,7 @@ export default function Home(props: any) {
 			</>
 		)
 	}
+	console.log()
 	return (
 		<>
 			<Seo seo={homePageData?.seo} />
@@ -42,6 +43,7 @@ export default function Home(props: any) {
 
 			<main>
 				{/* {listPlayer.map(player => (<pre>{JSON.stringify(player.firstname, null, 2)}</pre>))} */}
+				<h1 className={style.title}>Stiga</h1>
 				<div className={style.cards}>
 					{listPlayer.map(player => (
 						<div key={player.id} className={style.wrap}>
@@ -53,6 +55,10 @@ export default function Home(props: any) {
 								<div className={style.container}>
 									<p>Jméno hráče: {player.firstname} {player.surname}</p>
 									<p>Přezdívka hráče: {player.nickname}</p>
+									<p>Body: {player.teams.score}</p>
+									<p>Počet vítězství: </p>
+									<p>Počet zápasu: </p>
+
 								</div>
 							</div>
 						</div>
@@ -70,7 +76,7 @@ export default function Home(props: any) {
 							<tr>
 								<td><div className={style.name}>{match.playerHome.player.nickname}</div></td>
 								<td><div>{match.playerHome.score} : {match.playerAway.score}</div></td>
-								<td><div className={style.name}>{match.playerHome.player.nickname}</div></td>
+								<td><div className={style.name}>{match.playerAway.player.nickname}</div></td>
 							</tr>
 						</table>
 					))}
