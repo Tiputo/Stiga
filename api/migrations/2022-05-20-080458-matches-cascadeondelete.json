@@ -1,0 +1,124 @@
+{
+	"formatVersion": 3,
+	"modifications": [
+		{
+			"modification": "removeField",
+			"entityName": "Match",
+			"fieldName": "playerHome"
+		},
+		{
+			"modification": "removeField",
+			"entityName": "Match",
+			"fieldName": "playerAway"
+		},
+		{
+			"modification": "createRelation",
+			"entityName": "MatchTeam",
+			"owningSide": {
+				"name": "matchPlayerHome",
+				"inversedBy": "playerHome",
+				"nullable": true,
+				"type": "OneHasOne",
+				"target": "Match",
+				"joiningColumn": {
+					"columnName": "match_player_home_id",
+					"onDelete": "cascade"
+				}
+			},
+			"inverseSide": {
+				"name": "playerHome",
+				"ownedBy": "matchPlayerHome",
+				"target": "MatchTeam",
+				"type": "OneHasOne",
+				"nullable": true
+			}
+		},
+		{
+			"modification": "createRelation",
+			"entityName": "MatchTeam",
+			"owningSide": {
+				"name": "matchPlayerAway",
+				"inversedBy": "playerAway",
+				"nullable": true,
+				"type": "OneHasOne",
+				"target": "Match",
+				"joiningColumn": {
+					"columnName": "match_player_away_id",
+					"onDelete": "cascade"
+				}
+			},
+			"inverseSide": {
+				"name": "playerAway",
+				"ownedBy": "matchPlayerAway",
+				"target": "MatchTeam",
+				"type": "OneHasOne",
+				"nullable": true
+			}
+		},
+		{
+			"modification": "patchAclSchema",
+			"patch": [
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/Match/operations/create/playerHome",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/Match/operations/create/playerAway",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/Match/operations/update/playerHome",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/Match/operations/update/playerAway",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/Match/operations/read/playerHome",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/Match/operations/read/playerAway",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/MatchTeam/operations/create/matchPlayerHome",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/MatchTeam/operations/create/matchPlayerAway",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/MatchTeam/operations/update/matchPlayerHome",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/MatchTeam/operations/update/matchPlayerAway",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/MatchTeam/operations/read/matchPlayerHome",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/MatchTeam/operations/read/matchPlayerAway",
+					"value": true
+				}
+			]
+		}
+	]
+}

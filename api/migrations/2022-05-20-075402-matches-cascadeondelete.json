@@ -1,0 +1,17 @@
+{
+	"formatVersion": 3,
+	"modifications": [
+		{
+			"modification": "updateRelationOnDelete",
+			"entityName": "Match",
+			"fieldName": "playerHome",
+			"onDelete": "cascade"
+		},
+		{
+			"modification": "updateRelationOnDelete",
+			"entityName": "Match",
+			"fieldName": "playerAway",
+			"onDelete": "cascade"
+		}
+	]
+}
