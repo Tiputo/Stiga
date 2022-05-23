@@ -3,7 +3,7 @@ import getHeaderMenu from "../partials/getHeaderMenu"
 import getSettting from "../partials/getSettings"
 
 const getHomePage = `#graphql
-	query {
+	query {	
 		listPlayer{
 			id
 			firstname
@@ -17,15 +17,31 @@ const getHomePage = `#graphql
 			  type
 			  alt
 			}
-		  }
-
+			teams{
+				matchPlayerHome{
+					playerHome{
+						score
+					}
+				}
+        
+				matchPlayerAway{
+					playerAway{
+						score
+					}
+				}
+			}              
+  }	
+			
 		  listMatch{
 			id
 			playerHome{
 			  id
 			  score
-			  player{
+			  player{		   
 				nickname
+				teams{
+					score
+				}
 			  }
 			}
 			 playerAway{
@@ -33,6 +49,9 @@ const getHomePage = `#graphql
 			  score
 			  player{
 				nickname
+				teams{
+					score
+				}
 			  }
 			}
 		  }
