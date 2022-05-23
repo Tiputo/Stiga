@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cbea884b-5de9-42dc-8277-de515e35a6b0" name="Default Changelist" comment="added entity players">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/headless-cms.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/stiga.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/stiga.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/stiga.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -36,12 +36,12 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="ts.external.directory.path" value="C:\Users\parek\OneDrive\Plocha\starter-kits-main\headless-cms\node_modules\typescript\lib" />
+    <property name="ts.external.directory.path" value="C:\Users\parek\OneDrive\Plocha\starter-kits-main\stiga\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\parek\OneDrive\Plocha\starter-kits-main\headless-cms\website" />
+      <recent name="C:\Users\parek\OneDrive\Plocha\starter-kits-main\stiga\website" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
