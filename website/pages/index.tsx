@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import Head from 'next/head'
 import Image from 'next/image'
 import React from 'react'
@@ -61,6 +62,46 @@ export default function Home(props: any) {
 		return scoreHome + scoreAway;
 	}
 
+	const winHome = (player) => {
+		let filteredTeams
+		let arrayWithScore
+		let winScore = 0;
+		if (player.teams && player.teams.length > 0) {
+			filteredTeams = player.teams.filter((team) => team.matchPlayerHome?.playerHome?.score === 5)
+			arrayWithScore = filteredTeams.map((team) => team.matchPlayerHome?.playerHome?.score === 5)
+			arrayWithScore.filter((score) => score ? winScore++ : null)
+		}
+		return winScore;
+	}
+
+	const winAway = (player) => {
+		let filteredTeams
+		let arrayWithScore
+		let winScore = 0;
+		if (player.teams && player.teams.length > 0) {
+			filteredTeams = player.teams.filter((team) => team.matchPlayerAway?.playerAway?.score === 5)
+			arrayWithScore = filteredTeams.map((team) => team.matchPlayerAway?.playerAway?.score === 5)
+			arrayWithScore.filter((score) => score ? winScore++ : null)
+
+		}
+		return winScore;
+
+	}
+
+	const sumWin = (winHome, winAway) => {
+		return winHome + winAway;
+	}
+
+	const sumMatch = (player) => {
+		return player.teams.length;
+	}
+
+	const sumPercentWin = (sumWin, sumMatch) => {
+		const winRatio = sumWin / sumMatch * 100;
+
+		return winRatio;
+	}
+
 	return (
 		<>
 			<Seo seo={homePageData?.seo} />
@@ -93,20 +134,29 @@ export default function Home(props: any) {
 								<div className={style.container}>
 									<p>Jméno hráče: {player.firstname} {player.surname}</p>
 									<p>Přezdívka hráče: {player.nickname}</p>
-									<p>Počet vítězství:
+									<p>Počet zápasu: {sumMatch(player)}</p>
+									{/* Can be used later */}
+									{/* <p>Počet vítězství za domácí:
+										{winHome(player)}
 									</p>
-									<p>Počet zápasu: {player.teams.length}
-									</p>
-									<p>Celkové skóre:
-										{sumScore(scoreHome(player), scoreAway(player))}
-									</p>
-									<p>Skóre za domácí:
-										{/* @TODO: type data */}
-										{scoreHome(player)}
-									</p>
+									<p>Počet vítězství za venkovní:
+										{winAway(player)}
+									</p> */}
+									<p>Počet vítězství: {sumWin(winHome(player), winAway(player))}</p>
+									{/* Can be used later */}
+									{/* <p>Skóre za domácí: */}
+									{/* @TODO: type data */}
+									{/* {scoreHome(player)} */}
+									{/* </p>
 									<p>Skóre za hosty:
 										{/* @TODO: type data */}
-										{scoreAway(player)}
+									{/* {scoreAway(player)} */}
+									{/* </p> */}
+									<p>Celkové skóre: {sumScore(scoreHome(player), scoreAway(player))}</p>
+									<p>Úspěšnost: <span className={clsx(style.successfulness, sumPercentWin(sumWin(winHome(player), winAway(player)), sumMatch(player)) > 50 ? style.view_green : style.view_red)}>{
+										sumPercentWin(sumWin(winHome(player), winAway(player)), sumMatch(player)) + " %"
+									}
+									</span>
 									</p>
 								</div>
 							</div>
