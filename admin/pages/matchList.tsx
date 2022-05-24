@@ -1,4 +1,4 @@
-import { DataGridPage, DeleteEntityButton, GenericCell, Link, LinkButton, TextCell } from "@contember/admin";
+import { DataGridPage, DateCell, DeleteEntityButton, GenericCell, Link, LinkButton, TextCell } from "@contember/admin";
 import * as React from "react";
 
 export default () => (
@@ -32,6 +32,7 @@ export default () => (
             format={(scalar) => <Link to="matchEdit(id: $entity.id)">{scalar}</Link>}
         />
 
+        <DateCell field="publishAt" header={'Match created'} />
 
         <GenericCell>
             <DeleteEntityButton immediatePersist />

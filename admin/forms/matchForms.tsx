@@ -1,4 +1,4 @@
-import { Component, HasOne, NumberField, SelectField } from '@contember/admin'
+import { Component, DateTimeField, HasOne, NumberField, SelectField } from '@contember/admin'
 import * as React from 'react'
 
 type MatchFormProps = {
@@ -16,4 +16,17 @@ export const MatchForm = Component<MatchFormProps>(
         </>
     ),
     'MatchForm',
+)
+
+export const MatchSideForm = Component(
+    () => (
+        <>
+            <DateTimeField
+                field="publishAt"
+                label={'Match created'}
+                defaultValue={new Date().toISOString()}
+            />
+        </>
+    ),
+    'MatchSideForm',
 )

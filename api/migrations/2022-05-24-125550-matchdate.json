@@ -1,0 +1,38 @@
+{
+	"formatVersion": 3,
+	"modifications": [
+		{
+			"modification": "createColumn",
+			"entityName": "MatchTeam",
+			"field": {
+				"name": "publishAt",
+				"columnName": "publish_at",
+				"nullable": true,
+				"default": "now",
+				"type": "DateTime",
+				"columnType": "timestamptz"
+			},
+			"fillValue": "now"
+		},
+		{
+			"modification": "patchAclSchema",
+			"patch": [
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/MatchTeam/operations/create/publishAt",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/MatchTeam/operations/update/publishAt",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/MatchTeam/operations/read/publishAt",
+					"value": true
+				}
+			]
+		}
+	]
+}

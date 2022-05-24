@@ -4,6 +4,8 @@ import { Player } from "./Player"
 export class Match {
     playerHome = def.oneHasOneInverse(MatchTeam, "matchPlayerHome")
     playerAway = def.oneHasOneInverse(MatchTeam, "matchPlayerAway")
+
+    publishAt = def.dateTimeColumn().default('now')
 }
 
 export class MatchTeam {
