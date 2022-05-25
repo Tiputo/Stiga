@@ -101,9 +101,9 @@ export default function Home(props: any) {
 	}
 
 	const sumPercentWin = (sumWin, sumMatch) => {
-		const winRatio = sumWin / sumMatch * 100;
-
-		return winRatio;
+		let winRatio = sumWin / sumMatch * 100;
+		let roundedWinRatio = winRatio.toFixed(2);
+		return parseFloat(roundedWinRatio);
 	}
 
 	return (
@@ -170,6 +170,34 @@ export default function Home(props: any) {
 				</div>
 
 				<div className={style.table}>
+					<form action="" method="get" className="form">
+						<div className="playerFormInput">
+							<label htmlFor="playerHome">Vyber domácího hráče: </label>
+							<select name="playerHome" id="playerHomeSelect" required>
+								<option value="">--Vyber možnost--</option>
+								<option value="tipik">Tipík</option>
+								<option value="frixa">Frixa</option>
+							</select>
+							<label htmlFor="playerHomeScore">Skóre</label>
+							<input type="number" name="playerHomeScore" id="playerHomeScore" min="1" max="5" placeholder="1 do 5" required />
+						</div>
+
+						<div className="playerFormInput">
+							<label htmlFor="playerAway">Vyber venkovního hráče: </label>
+							<select name="playerAway" id="playerAwaySelect" required>
+								<option value="">--Vyber možnost--</option>
+								<option value="tipik">Tipík</option>
+								<option value="frixa">Frixa</option>
+							</select>
+							<label htmlFor="playerAwayScore">Skóre</label>
+							<input type="number" name="playerAwayScore" id="playerAwayScore" min="1" max="5" placeholder="1 do 5" required />
+						</div>
+
+						<div className="playerFormInput">
+							<input type="submit" value="Přidej!" />
+						</div>
+					</form>
+
 					{listMatch.map(match => (
 						<table key={match.id} className={style.tableIn}>
 							<thead>
