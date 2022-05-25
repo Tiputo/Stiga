@@ -92,6 +92,10 @@ export default function Home(props: any) {
 		return winHome + winAway;
 	}
 
+	const sumLose = (sumMatch, sumWin) => {
+		return sumMatch - sumWin;
+	}
+
 	const sumMatch = (player) => {
 		return player.teams.length;
 	}
@@ -112,7 +116,7 @@ export default function Home(props: any) {
 			<Header menu={headerMenu} logo={setting?.logo} />
 
 			<main>
-				{listPlayer.map((player, index) => (
+				{/* {listPlayer.map((player, index) => (
 					<div key={index}>
 						{player.nickname}
 						{player.teams.map((team, indexTeam) => (
@@ -121,7 +125,7 @@ export default function Home(props: any) {
 							</React.Fragment>
 						))}
 					</div>
-				))}
+				))} */}
 				<h1 className={style.title}>Stiga</h1>
 				<div className={style.cards}>
 					{listPlayer.map(player => (
@@ -152,6 +156,7 @@ export default function Home(props: any) {
 										{/* @TODO: type data */}
 									{/* {scoreAway(player)} */}
 									{/* </p> */}
+									<p>Počet proher: {sumLose(sumMatch(player), sumWin(winHome(player), winAway(player)))}</p>
 									<p>Celkové skóre: {sumScore(scoreHome(player), scoreAway(player))}</p>
 									<p>Úspěšnost: <span className={clsx(style.successfulness, sumPercentWin(sumWin(winHome(player), winAway(player)), sumMatch(player)) > 50 ? style.view_green : style.view_red)}>{
 										sumPercentWin(sumWin(winHome(player), winAway(player)), sumMatch(player)) + " %"
