@@ -1,12 +1,7 @@
 import { clientSideFetch } from "../../lib/graphql/gqlfetch"
+import createMatch from "../../lib/graphql/mutations/createMatch"
 
-export default function handler(req, res) {
-	// res.status(200).json({ name: 'John Doe' })
-	const createMatch = async () => {
-		const { data, errors } = await clientSideFetch(createMatch)
-
-		return { data, errors }
-	}
-	const { data, errors } = createMatch()
-	return res.status(200).json({ data, errors })
+export default async function handler(req, res) {
+  const { data, errors } = await clientSideFetch(createMatch)
+  return res.status(200).json({ data, errors })
 }
