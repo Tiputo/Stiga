@@ -34,6 +34,7 @@ const getHomePage = `#graphql
 			
 		  listMatch{
 			id
+			publishAt
 			playerHome{
 			  id
 			  score

@@ -107,6 +107,10 @@ export default function Home(props: any) {
 		return parseFloat(roundedWinRatio);
 	}
 
+	const toLocaleDatetime = (rawDate) => {
+		return new Date(rawDate).toLocaleDateString('cs-CZ', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' })
+	}
+
 	return (
 		<>
 			<Seo seo={homePageData?.seo} />
@@ -159,7 +163,7 @@ export default function Home(props: any) {
 									{/* </p> */}
 									<p>Počet proher: {sumLose(sumMatch(player), sumWin(winHome(player), winAway(player)))}</p>
 									<p>Celkové skóre: {sumScore(scoreHome(player), scoreAway(player))}</p>
-									<p>Úspěšnost: <span className={clsx(style.successfulness, sumPercentWin(sumWin(winHome(player), winAway(player)), sumMatch(player)) > 50 ? style.view_green : style.view_red)}>{
+									<p>Úspěšnost: <span className={clsx(style.successfulness, sumPercentWin(sumWin(winHome(player), winAway(player)), sumMatch(player)) >= 50 ? style.view_green : style.view_red)}>{
 										sumPercentWin(sumWin(winHome(player), winAway(player)), sumMatch(player)) + " %"
 									}
 									</span>
@@ -171,15 +175,21 @@ export default function Home(props: any) {
 					}
 				</div>
 
+
+
 				<div className={style.table}>
 					<AddMatchForm listPlayer={listPlayer} />
 					{listMatch.map(match => (
 						<table key={match.id} className={style.tableIn}>
 							<thead>
 								<tr>
+									<th className={style.dateColumn} colSpan={3}>{toLocaleDatetime(match.publishAt)}</th>
+								</tr>
+								<tr>
 									<th>Jméno domácího hráče</th>
 									<th>Skóre</th>
 									<th>Jméno venkovního hráče</th>
+
 								</tr>
 							</thead>
 							<tbody>
