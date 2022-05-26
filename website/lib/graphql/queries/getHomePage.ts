@@ -32,7 +32,7 @@ const getHomePage = `#graphql
 			}              
   }	
 			
-		  listMatch{
+		  listMatch(orderBy: [{publishAt: desc}]){
 			id
 			publishAt
 			playerHome{
