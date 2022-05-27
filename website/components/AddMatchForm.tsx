@@ -20,6 +20,7 @@ export default function AddMatchForm(props: any) {
             setSubmitState([{ message: 'Match cannot be created.', ok: false }])
         } else {
             setSubmitState([{ message: 'Match created.', ok: true }])
+            event.target.reset();
         }
     }, [])
 
