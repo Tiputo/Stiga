@@ -29,13 +29,13 @@ export default function AddMatchForm(props: any) {
         if (data.playerAwayScore !== data.playerHomeScore && data.playerHomeId !== data.playerAwayId && (parseInt(data.playerHomeScore.toString()) === 5 || parseInt(data.playerAwayScore.toString()) === 5)) {
             submitForm(event, data);
         } else if (data.playerAwayScore === data.playerHomeScore && data.playerHomeId === data.playerAwayId) {
-            setSubmitState([{ message: 'The score cannot be equal the at both side and same players at the same time.', ok: false }])
+            setSubmitState([{ message: 'Skóre nemůže být současně stejné u obou stran a u stejných hráčů.', ok: false }])
         } else if (parseInt(data.playerHomeScore.toString()) !== 5 || parseInt(data.playerAwayScore.toString()) !== 5) {
-            setSubmitState([{ message: 'One of the player needs to be a winner.', ok: false }])
+            setSubmitState([{ message: 'Jeden z hráčů musí být vítěz.', ok: false }])
         } else if (data.playerAwayScore === data.playerHomeScore) {
-            setSubmitState([{ message: 'The score cannot be equal the at both side.', ok: false }])
+            setSubmitState([{ message: 'Skóre nemůže být stejné na obou stranách.', ok: false }])
         } else if (data.playerHomeId === data.playerAwayId) {
-            setSubmitState([{ message: 'You cannot choose the same player at each side.', ok: false }])
+            setSubmitState([{ message: 'Nemůžeš si vybrat stejného hráče na každé straně.', ok: false }])
         }
     }, [submitForm])
 
