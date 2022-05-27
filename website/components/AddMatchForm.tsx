@@ -9,11 +9,7 @@ export default function AddMatchForm(props: any) {
 
     const [submitState, setSubmitState] = useState<any>(null)
 
-    const onSubmit = useCallback(async (event) => {
-        event.preventDefault()
-        const formData = new FormData(event.target)
-        const data = Object.fromEntries(formData)
-
+    const submitForm = useCallback(async (event, data) => {
         const { errors, data: submitData } = await clientSideFetch(createMatch(data.playerHomeId as string, parseInt(data.playerHomeScore as string), data.playerAwayId as string, parseInt(data.playerAwayScore as string)))
         if (errors) {
             console.error(errors)
@@ -21,6 +17,18 @@ export default function AddMatchForm(props: any) {
         } else {
             setSubmitState([{ message: 'Match created.', ok: true }])
             event.target.reset();
+        }
+    }, [])
+
+    const onSubmit = useCallback((event) => {
+        event.preventDefault()
+        const formData = new FormData(event.target)
+        const data = Object.fromEntries(formData)
+
+        if (data.playerAwayScore !== data.playerHomeScore) {
+            submitForm(event, data);
+        } else {
+            setSubmitState([{ message: 'The score cannot be the at both side.', ok: false }])
         }
     }, [])
 
