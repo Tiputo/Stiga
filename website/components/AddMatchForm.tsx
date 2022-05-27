@@ -13,9 +13,9 @@ export default function AddMatchForm(props: any) {
         const { errors, data: submitData } = await clientSideFetch(createMatch(data.playerHomeId as string, parseInt(data.playerHomeScore as string), data.playerAwayId as string, parseInt(data.playerAwayScore as string)))
         if (errors) {
             console.error(errors)
-            setSubmitState([{ message: 'Match cannot be created.', ok: false }])
+            setSubmitState([{ message: 'Zápas nemůže být vytvořen.', ok: false }])
         } else {
-            setSubmitState([{ message: 'Match created.', ok: true }])
+            setSubmitState([{ message: 'Zápas vytvořen.', ok: true }])
             event.target.reset();
         }
     }, [])
