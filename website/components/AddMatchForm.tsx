@@ -25,10 +25,13 @@ export default function AddMatchForm(props: any) {
         const formData = new FormData(event.target)
         const data = Object.fromEntries(formData)
 
-        if (data.playerAwayScore !== data.playerHomeScore && data.playerHomeId !== data.playerAwayId) {
+        //@TODO: Refactor if new condition is going to be added.
+        if (data.playerAwayScore !== data.playerHomeScore && data.playerHomeId !== data.playerAwayId && (parseInt(data.playerHomeScore.toString()) === 5 || parseInt(data.playerAwayScore.toString()) === 5)) {
             submitForm(event, data);
         } else if (data.playerAwayScore === data.playerHomeScore && data.playerHomeId === data.playerAwayId) {
-            setSubmitState([{ message: 'The score cannot be equal the at both side and you cannot choose the same player at each side.', ok: false }])
+            setSubmitState([{ message: 'The score cannot be equal the at both side and same players at the same time.', ok: false }])
+        } else if (parseInt(data.playerHomeScore.toString()) !== 5 || parseInt(data.playerAwayScore.toString()) !== 5) {
+            setSubmitState([{ message: 'One of the player needs to be a winner.', ok: false }])
         } else if (data.playerAwayScore === data.playerHomeScore) {
             setSubmitState([{ message: 'The score cannot be equal the at both side.', ok: false }])
         } else if (data.playerHomeId === data.playerAwayId) {
