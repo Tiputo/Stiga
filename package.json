@@ -19,11 +19,11 @@
     "sass": "^1.51.0"
   },
   "devDependencies": {
-    "@contember/admin": "^1.0.0",
-    "@contember/admin-i18n": "^1.0.0",
-    "@contember/react-client": "^1.0.0",
-    "@contember/schema": "^1.0.0",
-    "@contember/schema-definition": "^1.0.0",
+    "@contember/admin": "1.0.0",
+    "@contember/admin-i18n": "1.0.0",
+    "@contember/react-client": "1.0.0",
+    "@contember/schema": "1.0.0",
+    "@contember/schema-definition": "1.0.0",
     "@picocss/pico": "^1.4.4",
     "@types/node": "^16",
     "@types/react": "^17",
