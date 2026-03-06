@@ -50,7 +50,7 @@ services:
       replicas: 0
 
     environment:
-      CONTEMBER_API_URL: 'http://contember-engine:4000/'
+      CONTEMBER_API_URL: 'https://engine-1-0-0.onrender.com'
       CONTEMBER_API_TOKEN: '0000000000000000000000000000000000000000'
       CONTEMBER_PROJECT_NAME: 'stiga'
 
